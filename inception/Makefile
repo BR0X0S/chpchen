@@ -34,6 +34,8 @@ clean: down
 fclean: clean
 	@echo "🔥 Removing all images related to the project..."
 	@docker rmi $$(docker images -q) 2> /dev/null || true
+	@sudo rm -rf ~/data/mariadb/*
+	@sudo rm -rf ~/data/wordpress/*
 
 re: fclean up
 
