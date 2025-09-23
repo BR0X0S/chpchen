@@ -16,6 +16,7 @@ services:
     volumes:
       - wordpressv:/var/www/wordpress
 
+
   mariadb:
     restart: unless-stopped
     build: requirements/mariadb/
@@ -30,6 +31,7 @@ services:
       - inception
     volumes:
       - mariadbv:/var/lib/mysql
+
 
   wordpress:
     restart: unless-stopped
@@ -48,6 +50,7 @@ services:
     depends_on:
       - mariadb
 
+
   static_web:
     restart: unless-stopped
     build: requirements/bonus/static_web
@@ -55,6 +58,7 @@ services:
     container_name: web
     ports:
       - "440:440"
+
 
   adminer:
     restart: unless-stopped
@@ -73,6 +77,33 @@ services:
     ports:
       - "8080:8080"
 
+
+  redis:
+    restart: unless-stopped
+    build: requirements/bonus/redis
+    image: redis
+    container_name: redis
+    ports:
+      - 6379:6379
+    networks:
+      - inception
+
+
+  portainer:
+    restart: unless-stopped
+    build: requirements/bonus/portainer
+    image: portainer
+    container_name: portainer
+    ports:
+      - 9443:9443   # HTTPS
+      - 9999:9999   # HTTP
+    networks:
+      - inception
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainerv:/data
+
+
 volumes:
   mariadbv:
     name: mariadbv
@@ -82,6 +113,7 @@ volumes:
       o: 'bind'
       device: '/home/oumondad/data/mariadb'
 
+
   wordpressv:
     name: wordpressv
     driver: local
@@ -89,6 +121,16 @@ volumes:
       type: 'none'
       o: 'bind'
       device: '/home/oumondad/data/wordpress'
+
+
+  portainerv:
+    name: portainerv
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/home/oumondad/data/portainer'
+
 
 networks:
   inception:

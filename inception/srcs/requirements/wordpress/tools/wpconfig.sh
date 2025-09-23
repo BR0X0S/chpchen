@@ -41,8 +41,16 @@ wp user create --allow-root \
     --role=author --path='/var/www/wordpress'
 
 echo "WordPress Configuration Completed!"
+
+echo "Configuring Redis Cache..."
+wp config set WP_CACHE true --raw --type=constant --allow-root --path="/var/www/wordpress" #wp know caching
+wp config set WP_REDIS_HOST redis --type=constant --allow-root --path="/var/www/wordpress" #cache stabilisation connect redis plugin to redis container
+wp plugin install redis-cache --activate --force --allow-root --path="/var/www/wordpress" || true
+wp redis enable --allow-root --path="/var/www/wordpress" || true
+
+echo "WordPress Configuration Completed!"
+
+
 echo "Starting PHP-FPM..."
 
 exec php-fpm7.4 -F #deamon mode
-
-

@@ -36,6 +36,7 @@ fclean: clean
 	@docker rmi $$(docker images -q) 2> /dev/null || true
 	@sudo rm -rf ~/data/mariadb/*
 	@sudo rm -rf ~/data/wordpress/*
+	@sudo rm -rf ~/data/portainer/*
 
 re: fclean up
 
