@@ -7,7 +7,7 @@ RUN 	openssl req -x509 -nodes \
 		-out /etc/nginx/ssl/inception.crt \
 		-subj "/C=MA/ST=BG/L=1337/O=42/OU=42/CN=oumondad.42.fr/UID=oumondad"
 
-# COPY	conf/nginx.conf /etc/nginx/conf.d/default.conf
-COPY	conf/nginx.conf /etc/nginx/nginx.conf
+COPY	conf/nginx.conf /etc/nginx/conf.d/default.conf
+# COPY	conf/nginx.conf /etc/nginx/nginx.conf
 
 CMD		["nginx", "-g", "daemon off;"]
