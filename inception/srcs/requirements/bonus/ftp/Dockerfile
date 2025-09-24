@@ -13,4 +13,4 @@ COPY        start_ftp.sh /
 
 RUN         chmod +x /start_ftp.sh
 
-CMD         ["./start_ftp.sh"]
+ENTRYPOINT  ["./start_ftp.sh"]

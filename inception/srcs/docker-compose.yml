@@ -4,11 +4,7 @@ services:
     build: requirements/nginx/
     image: nginx
     container_name: nginx
-    env_file:
-      - .env
-      - ../secrets/credentials.txt
-      - ../secrets/db_password.txt
-      - ../secrets/db_root_password.txt
+    env_file: .env
     ports:
       - "443:443"
     networks:
@@ -22,11 +18,7 @@ services:
     build: requirements/mariadb/
     image: mariadb
     container_name: mariadb
-    env_file:
-      - .env
-      - ../secrets/credentials.txt
-      - ../secrets/db_password.txt
-      - ../secrets/db_root_password.txt
+    env_file: .env
     networks:
       - inception
     volumes:
@@ -38,11 +30,7 @@ services:
     build: requirements/wordpress/
     image: wordpress
     container_name: wordpress
-    env_file:
-      - .env
-      - ../secrets/credentials.txt
-      - ../secrets/db_password.txt
-      - ../secrets/db_root_password.txt
+    env_file: .env
     networks:
       - inception
     volumes:
@@ -65,11 +53,7 @@ services:
     build: requirements/bonus/adminer
     image: adminer
     container_name: adminer
-    env_file:
-      - .env
-      - ../secrets/credentials.txt
-      - ../secrets/db_password.txt
-      - ../secrets/db_root_password.txt
+    env_file: .env
     networks:
       - inception
     volumes:
@@ -95,8 +79,8 @@ services:
     image: portainer
     container_name: portainer
     ports:
-      - 9443:9443   # HTTPS
-      - 9999:9999   # HTTP
+      - 9443:9443
+      - 9999:9999
     networks:
       - inception
     volumes:
@@ -109,9 +93,7 @@ services:
     build: requirements/bonus/ftp
     image: ftp
     container_name: ftp
-    env_file:
-      - ../secrets/credentials.txt
-      - ../secrets/db_password.txt
+    env_file: .env
     ports:
       - 21:21
       - "30000-30010:30000-30010"

@@ -18,5 +18,4 @@ RUN     mkdir -p /data
 # Expose the port (using 9999 to match docker-compose.yml)
 EXPOSE  9999
 
-CMD ["/opt/portainer/portainer", "--data", "/data", "--bind", ":9999"]
-# CMD ["/opt/portainer/portainer", "--data", "/data"]
+ENTRYPOINT ["/opt/portainer/portainer", "--data", "/data", "--bind", ":9999"]

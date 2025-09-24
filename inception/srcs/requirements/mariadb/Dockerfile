@@ -8,4 +8,4 @@ COPY	tools/init_db.sh	/
 
 RUN 	chmod 755 init_db.sh
 
-CMD 	["bash", "init_db.sh"]
+ENTRYPOINT 	["bash", "init_db.sh"]

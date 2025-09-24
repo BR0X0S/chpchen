@@ -18,4 +18,4 @@ RUN		mv wp-cli.phar /usr/local/bin/wp
 
 COPY 	tools/wpconfig.sh /
 
-CMD		["bash", "wpconfig.sh"]
+ENTRYPOINT		["bash", "wpconfig.sh"]

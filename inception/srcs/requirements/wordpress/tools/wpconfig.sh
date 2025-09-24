@@ -14,7 +14,6 @@ mkdir -p /run/php
 chown www-data:www-data /run/php
 
 if [ ! -f /var/www/wordpress/wp-config.php ]; then
-    echo "lfouuul haha"
     wp config create --allow-root \
         --dbname=$MYSQL_DATABASE \
         --dbuser=$MYSQL_USER \
@@ -53,4 +52,4 @@ echo "WordPress Configuration Completed!"
 
 echo "Starting PHP-FPM..."
 
-exec php-fpm7.4 -F #deamon mode
+exec php-fpm7.4 -F
